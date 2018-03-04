@@ -12,13 +12,7 @@ public class Main {
         //problem7();
         //problem8();
         //problem9();
-        boolean b = isPrime(4);
-        for (int i = 2; i < 200; i++) {
-            if(isPrime(i)){
-                System.out.println(i);
-            }
-        }
-        problem10();
+        //problem10();
     }
     public static void problem1(){
         int sum = 0;
