@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Main {
     public static void main(String[] args){
@@ -13,8 +14,18 @@ public class Main {
         //problem8();
         //problem9();
         //problem10();
-        problem11();
+        //problem11();
+      problem28();
     }
+    public static void problem28(){
+      int sum = 0;
+      for (int i = 3; i <= 1001; i += 2) {
+        sum += 4*(i*i) - (i-1)*6;
+      }
+      sum++;
+      System.out.println(sum);
+    }
+
     public static void problem1(){
         int sum = 0;
         for (int i = 1; i < 1000 ; i++) {
@@ -261,14 +272,31 @@ public class Main {
                 {20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54},
                 {1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48},
         };
+        int xlength = SQUARE[0].length;
+        int ylength = SQUARE.length;
+        int max = 1, newmax = 1;
+        int vertical =1, horizontal=1, diagonal=1, column;
+        for (int row = 0; row < SQUARE.length; row++) {
+            column = 0;
+            for (column = 0; column < SQUARE[row].length; column++) {
+                if(column <= xlength - 4) {
+                    horizontal = SQUARE[row][column] * SQUARE[row][column + 1] * SQUARE[row][column + 2] * SQUARE[row][column + 3];
 
-        int max = -1;
-        for (int y = 0; y < SQUARE.length; y++) {
-            for (int x = 0; x < SQUARE[y].length; x++) {
-
+                }
+                if(row <= ylength - 4){
+                    vertical = SQUARE[row][column] * SQUARE[row+1][column] * SQUARE[row+2][column] * SQUARE[row+3][column];
+                }
+                if(row <= ylength - 4 && column <= xlength - 4){
+                    diagonal = SQUARE[row][column] * SQUARE[row+1][column+1] * SQUARE[row+2][column+2] * SQUARE[row+3][column+3];
+                }
+                newmax = Math.max(Math.max(horizontal,diagonal),vertical);
+                if(newmax > max){
+                    max = newmax;
+                }
 
             }
 
         }
+        System.out.println("Das Ergebnis ist: " +max);
     }
 }
