@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args){
@@ -15,8 +18,52 @@ public class Main {
         //problem9();
         //problem10();
         //problem11();
-      problem28();
+        //problem28();
+        problem29();
     }
+
+    public static void problem29(){
+        HashSet<Double> s = new HashSet<>();
+        for (int i = 2; i <= 100; i++) {
+            for (int j = 2; j <= 100 ; j++) {
+                s.add(Math.pow((double) i,(double) j));
+            }
+        }
+        System.out.println("Number of distinct terms:" + s.size());
+    }
+
+    public static int shortestWord(String words){
+        String[] split = words.split(" ");
+        int shortest = split[0].length();
+        for (String word: split) {
+            int wordlength = word.length();
+            if(wordlength < shortest){
+                shortest = wordlength;
+            }
+        }
+        return shortest;
+    }
+
+    public static int find(int[] integers) {
+        ArrayList<Integer> evenInts = new ArrayList<Integer>();
+        ArrayList<Integer> oddInts = new ArrayList<Integer>();
+        for (int i: integers) {
+            if(i % 2 == 0){
+                evenInts.add(i);
+            }else{
+                oddInts.add(i);
+            }
+        }
+        if(evenInts.size() == 1){
+            return evenInts.get(0);
+        }
+        return oddInts.get(0);
+    }
+
+    public static int shortestWordStreams(String s){
+        return Arrays.stream(s.split(" ")).mapToInt(String::length).min().getAsInt();
+    }
+
     public static void problem28(){
       int sum = 0;
       for (int i = 3; i <= 1001; i += 2) {
